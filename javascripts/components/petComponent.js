@@ -1,11 +1,19 @@
+import {sortedPetsBuilder,getPetz } from '../events.js';
+
 const printToDom = (stringToPrint) => {     
-    const printHere = document.getElementById ('pets');     
+    const printHere = document.getElementById('pets');     
     printHere.innerHTML = stringToPrint;
 }
- export {printToDom};
+
+const unfilterResults = () => {
+    const unfilterButton = document.getElementById('unfilter');
+    unfilterButton.addEventListener('click', () => {
+        sortedPetsBuilder(getPetz());
+    });
+};
 
 
-const petsBuilder = (pet) => {
+const petsBuilder = (pets) => {
     let domString = '';
     domString += `<div class="card" style="width: 18rem;">`;
     domString += `<div class="petnames" id="petnames">${pets.name}</div>`;
@@ -17,8 +25,11 @@ const petsBuilder = (pet) => {
     domString += `</div>`;    
     domString += `</div>`; 
     domString += `</div>`; 
-    
+
     printToDom(domString);
+    
+
+
 };
 
-export{petsBuilder};
+export{petsBuilder,printToDom,unfilterResults};

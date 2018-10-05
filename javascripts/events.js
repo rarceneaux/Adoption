@@ -1,31 +1,59 @@
-import { petsBuilder } from "./components/petComponent";
+import {petsBuilder,printToDom,unfilterResults} from "./components/petComponent.js";
 
-// import print to dom
+// 
 
 let pets = [];
 
-// const setPets = (newArray) => {
-//     pets = newArray;
-// };
+const setPets = (newArray) => {
+   pets = newArray;
+};
 
-// const getpetz = () => {
-//     return pets;
-// };
+const getPetz = () => {
+    return pets;
+};
+
 // will line 16 do the same as id since type is a key value of pets???
-const sortPets = (e) => {
-    const type = e.target.type;
+const filterPets = (e) => {
+    const type = e.target.id;
     if (type === 'cats'){
-        petsBuilder(pets.type.cats);
-    }else{
-        const findOther = pets.filter(x => x.type === )
+        petsBuilder(pets.cats);
+    } else if
+        (type ==='dogs') {
+          petsBuilder(pets.dogs);  
+    } else {
+        petsBuilder(pets.dinos);
+}
+}
 
-
-
-    }
-    const catsButton = document.getElementById('cats');
+const sortEvents = () => {
+    const catsButton = document.getElementById('cats'); 
     const dogsButton = document.getElementById('dogs');
     const dinosButton = document.getElementById('dinos');
-    catsButton.addEventListener('click', sortThem);
-    dogsButton.addEventListener('click', sortThem);
-    dinosButton.addEventListener('click', sortThem);
-}
+    catsButton.addEventListener('click', filterPets);
+    dogsButton.addEventListener('click', filterPets);
+    dinosButton.addEventListener('click', filterPets);
+};
+
+const sortedPetsBuilder = (petsArray) => {
+    let domString = '';
+    petsArray.forEach((pets) =>{
+        domString += `<div class="card" style="width: 18rem;">`;
+        domString += `<div class="row">`;
+        domString += `<button class="btn btn-danger" id="unfilter">Unfilter</button>`;
+        domString += `<div class="petnames" id="petnames">${pets.name}</div>`;
+        domString += `<img class="card-img-top" id="pics" src="${pets.imageUrl}" alt="Card image cap"/>`;    
+        domString += `<div class="card-body">`;
+        domString +=`<h5> class="card-title" id="color">${pets.color}</h5>`;
+        domString +=`<p> class="card-text"id="specialSkills">${pets.specialSkills}</p>`;
+        domString += `<p> id="typeOfPet">${pets.type}</p>`;
+        domString += `</div>`;    
+        domString += `</div>`; 
+        domString += `</div>`; 
+});
+printToDom(domString);
+sortEvents();
+unfilterResults();
+
+};
+
+export {sortedPetsBuilder,setPets,getPetz,sortEvents};
