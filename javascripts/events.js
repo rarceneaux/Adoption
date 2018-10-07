@@ -1,4 +1,4 @@
-import {petsBuilder,printToDom,unfilterResults} from "./components/petComponent.js";
+import {petsBuilder,printToDom} from "./components/petComponent.js";
 
 // 
 
@@ -16,14 +16,34 @@ const getPetz = () => {
 const filterPets = (e) => {
     const type = e.target.id;
     if (type === 'cats'){
-        petsBuilder(pets.cats);
+        let catString = "";
+        pets.forEach(pet => {
+            if (pet.type === 'cat'){
+            catString += sortedPetsBuilder(pet);
+            }
+        })
+        printToDom(catString);
     } else if
         (type ==='dogs') {
-          petsBuilder(pets.dogs);  
+          let dogString = "";
+          pets.forEach(pet => {
+              if (pet.type === 'dog'){
+                  dogString += sortedPetsBuilder(pet);
+              }
+          }) 
+          printToDom(dogString);
     } else {
-        petsBuilder(pets.dinos);
+        (type === 'dinos')
+            let dinoString = "";
+            pets.forEach(pet =>{
+                if (pet.type === 'dino'){
+                    dinoString += sortedPetsBuilder(pet);
+                }
+            })
+            printToDom(dinoString);
+        }
 }
-}
+
 
 const sortEvents = () => {
     const catsButton = document.getElementById('cats'); 
@@ -34,26 +54,46 @@ const sortEvents = () => {
     dinosButton.addEventListener('click', filterPets);
 };
 
-const sortedPetsBuilder = (petsArray) => {
+
+
+// const showAll = (e) => {
+//      const clickedButton = e.target.id;
+//          if (clickedButton === 'cats' && 'dogs' && 'dinos'){
+//            petsBuilder(pets);
+//         };
+
+
+
+//  const unfilterPets = () => {
+//      const unfilterButton = document.getElementById('unfilter');
+//      unfilterButton.addEventListener('click', showAll);
+//  };
+
+
+
+const sortedPetsBuilder = (pet) => {
     let domString = '';
-    petsArray.forEach((pets) =>{
-        domString += `<div class="card" style="width: 18rem;">`;
+        domString += `<div class="filteredCard" style="width: 18rem;">`;
         domString += `<div class="row">`;
-        domString += `<button class="btn btn-danger" id="unfilter">Unfilter</button>`;
-        domString += `<div class="petnames" id="petnames">${pets.name}</div>`;
-        domString += `<img class="card-img-top" id="pics" src="${pets.imageUrl}" alt="Card image cap"/>`;    
+        // domString += `<button class="btn btn-danger" id="unfilter">Unfilter</button>`;
+        domString += `<div class="petNames2" id="petnames">${pet.name}</div>`;
+        domString += `<img class="card-img-top" id="pics" src="${pet.imageUrl}" alt="Card image cap"/>`;    
         domString += `<div class="card-body">`;
-        domString +=`<h5> class="card-title" id="color">${pets.color}</h5>`;
-        domString +=`<p> class="card-text"id="specialSkills">${pets.specialSkills}</p>`;
-        domString += `<p> id="typeOfPet">${pets.type}</p>`;
+        domString +=`<h5 class="card-title" id="color">${pet.color}</h5>`;
+        domString +=`<p class="card-text"id="specialSkills">${pet.specialSkill}</p>`;
+        domString += `<p id="typeOfPet">${pet.type}</p>`;
         domString += `</div>`;    
         domString += `</div>`; 
         domString += `</div>`; 
-});
-printToDom(domString);
-sortEvents();
-unfilterResults();
 
+        return domString;
+        
+        
 };
+
+// unfilterPets();
+ 
+
+
 
 export {sortedPetsBuilder,setPets,getPetz,sortEvents};

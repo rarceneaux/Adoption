@@ -5,7 +5,6 @@ import {sortEvents} from './events.js';
 const initializeApp = () => {
     sortEvents();
     getPets();
-
 };
 
 
