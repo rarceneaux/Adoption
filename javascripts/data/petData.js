@@ -1,10 +1,12 @@
-// import {setCharacters, charactersBuilder, getCharacterz} from '../components/characters.js';
+// import {printToDom,} from '../petComponent.js';
+import {setPets,getPetz} from '../events.js';
+import {petsBuilder} from '../components/petComponent.js';
 
 
 function executeThisCodeAfterFileLoaded () {
     const data = JSON.parse(this.responseText);
-    set_________(data.____________);
-    xxxxxxBuilder(getXXXXXXXXXXX());
+    setPets(data.pets);
+    petsBuilder(getPetz());
 }
 
 function executeThisIfXhrFails (){
@@ -12,7 +14,7 @@ function executeThisIfXhrFails (){
 }
 
 
-const xxxxxxxxxxx = () => {
+const getPets = () => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener('load',executeThisCodeAfterFileLoaded);
     myRequest.addEventListener('error',executeThisIfXhrFails);
@@ -20,4 +22,4 @@ const xxxxxxxxxxx = () => {
     myRequest.send();
 };
 
-export {getxxxxxxCharacters};
+export {getPets};

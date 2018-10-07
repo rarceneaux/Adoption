@@ -1,24 +1,29 @@
+import {sortedPetsBuilder,getPetz } from '../events.js';
+
 const printToDom = (stringToPrint) => {     
-    const printHere = document.getElementById ('pets');     
+    const printHere = document.getElementById('pets');     
     printHere.innerHTML = stringToPrint;
 }
- export {printToDom};
 
 
-const petsBuilder = (pet) => {
+const petsBuilder = (petsArray) => {
     let domString = '';
-    domString += `<div class="card" style="width: 18rem;">`;
-    domString += `<div class="petnames" id="petnames">${pets.name}</div>`;
-    domString += `<img class="card-img-top" id="pics" src="${pets.imageUrl}" alt="Card image cap"/>`;    
+    petsArray.forEach((pets) => {
+    domString += `<div class="petCard" style="width: 18rem;">`;
+    domString += `<div class="petnames">${pets.name}</div>`;
+    domString += `<img class="card-img-top" src="${pets.imageUrl}" alt="Card image cap"/>`;    
     domString += `<div class="card-body">`;
-    domString +=`<h5> class="card-title" id="color">${pets.color}</h5>`;
-    domString +=`<p> class="card-text"id="specialSkills">${pets.specialSkills}</p>`;
-    domString += `<p> id="typeOfPet">${pets.type}</p>`;
+    domString +=`<h5 class="card-title" id="color">${pets.color}</h5>`;
+    domString +=`<p class="card-text"id="specialSkills">${pets.specialSkill}</p>`;
+    domString += `<p id="type">${pets.type}</p>`;
     domString += `</div>`;    
     domString += `</div>`; 
-    domString += `</div>`; 
-    
+    });
+
     printToDom(domString);
+    
+
+
 };
 
-export{petsBuilder};
+export{petsBuilder,printToDom};
