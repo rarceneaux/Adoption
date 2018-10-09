@@ -1,4 +1,4 @@
-// import {printToDom,} from '../petComponent.js';
+
 import {setPets,getPetz} from '../events.js';
 import {petsBuilder} from '../components/petComponent.js';
 
